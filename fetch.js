@@ -5,7 +5,7 @@ var token = fs.readFileSync('./token', 'utf-8');
 var exec = require('child_process').exec,
   child;
 
-exec("rm data.json; curl --get 'https://api.twitter.com/1.1/statuses/retweets/"+tweetID+".json' --header 'Authorization: "+token+"' --verbose > data.json",
+exec("rm data.json; curl --get 'https://api.twitter.com/1.1/statuses/retweets/"+tweetID+".json' --header 'Authorization: "+token+"' > data.json",
 function (error, stdout, stderr){
   console.log(error);
   console.log(stdout);
