@@ -1,13 +1,18 @@
+var Twitter = require('twitter')
+  , fs = require('fs')
+  , config = require(__dirname + '/config.json')
+  , tokenData = require(__dirname + '/token.json')
+  , tweetID = process.argv[2];
 
-var tweetID = process.argv[2];
-var fs = require('fs');
-var token = fs.readFileSync('./token', 'utf-8');
-var exec = require('child_process').exec,
-  child;
+var client = new Twitter({
+  consumer_key: config.consumerKey,
+  consumer_secret: config.consumerSecret,
+  access_token_key: tokenData.token,
+  access_token_secret: tokenData.tokenSecret
+});
 
-exec("rm data.json; curl --get 'https://api.twitter.com/1.1/statuses/retweets/"+tweetID+".json' --header 'Authorization: "+token+"' > data.json",
-function (error, stdout, stderr){
-  console.log(error);
-  console.log(stdout);
-  console.log(stderr);
+var params = {screen_name: 'nodejs'};
+
+client.get('statuses/retweets/'+tweetID, {}, function(error, tweets, response){
+    fs.writeFileSync(__dirname + '/data.json', JSON.stringify(tweets), 'utf-8');
 });

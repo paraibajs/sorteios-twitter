@@ -6,7 +6,11 @@ Simples app para sorteios no Twitter usando Retweets
 
 ### Autorização com Twitter
 
-Crie um arquivo chamado `token` na raiz do projeto com o conteúdo do Authorization Header que pode ser encontrado [aqui](https://dev.twitter.com/oauth/tools/signature-generator).
+O comando abaixo irá abrir o browser e direcionar para uma autorização no twitter.
+
+    node auth.js
+
+Após autorizado pode seguir os passos seguintes.
 
 ### Buscando Retweets
 
